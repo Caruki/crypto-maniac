@@ -1,0 +1,28 @@
+{
+  "name": "crypto-maniac",
+  "version": "1.0.0",
+  "description": "Password manager in node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "eslint --ext .js src/",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caruki/crypto-maniac.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caruki/crypto-maniac/issues"
+  },
+  "homepage": "https://github.com/Caruki/crypto-maniac#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.1"
+  },
+  "dependencies": {}
+}
