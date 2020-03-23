@@ -1,11 +1,11 @@
-const fs = require('fs');
+const { readPasswords, writePasswords } = require('./lib/passwords');
+
 const [command, key, value] = process.argv.slice(2);
 
 function get() {
   try {
-    const passwordsJSON = fs.readFileSync('./db.json', 'utf8');
-    const passwords = JSON.parse(passwordsJSON);
-    console.log(key, passwords[key]);
+    const passwords = readPasswords();
+    console.log(`${key}: "${passwords[key]}"`);
   } catch (error) {
     console.error(error);
   }
@@ -13,10 +13,9 @@ function get() {
 
 function set() {
   try {
-    const passwordsJSON = fs.readFileSync('./db.json', 'utf8');
-    const passwords = JSON.parse(passwordsJSON);
+    const passwords = readPasswords();
     passwords[key] = value;
-    fs.writeFileSync('./db.json', JSON.stringify(passwords, null, 2));
+    writePasswords(passwords);
   } catch (error) {
     console.error(error);
   }
@@ -24,10 +23,9 @@ function set() {
 
 function unset() {
   try {
-    const passwordsJSON = fs.readFileSync('./db.json', 'utf8');
-    const passwords = JSON.parse(passwordsJSON);
+    const passwords = readPasswords();
     delete passwords[key];
-    fs.writeFileSync('./db.json', JSON.stringify(passwords, null, 2));
+    writePasswords(passwords);
   } catch (error) {
     console.error(error);
   }
