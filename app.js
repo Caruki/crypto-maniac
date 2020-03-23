@@ -1,6 +1,10 @@
-const hello = 'hello';
+const { get, set, unset } = require('./lib/commands');
+const [command, key, value] = process.argv.slice(2);
 
-function sayHi() {
-  console.log(hello);
+if (command === 'get') {
+  get(key);
+} else if (command === 'set') {
+  set(key, value);
+} else if (command === 'unset') {
+  unset(key);
 }
-sayHi();
