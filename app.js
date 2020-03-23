@@ -1,40 +1,10 @@
-const { readPasswords, writePasswords } = require('./lib/passwords');
-
+const { get, set, unset } = require('./lib/commands');
 const [command, key, value] = process.argv.slice(2);
 
-function get() {
-  try {
-    const passwords = readPasswords();
-    console.log(`${key}: "${passwords[key]}"`);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function set() {
-  try {
-    const passwords = readPasswords();
-    passwords[key] = value;
-    writePasswords(passwords);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function unset() {
-  try {
-    const passwords = readPasswords();
-    delete passwords[key];
-    writePasswords(passwords);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 if (command === 'get') {
-  get();
+  get(key);
 } else if (command === 'set') {
-  set();
+  set(key, value);
 } else if (command === 'unset') {
-  unset();
+  unset(key);
 }
