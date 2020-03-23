@@ -16,8 +16,19 @@ function set() {
     const passwordsJSON = fs.readFileSync('./db.json', 'utf8');
     const passwords = JSON.parse(passwordsJSON);
     passwords[key] = value;
-    fs.writeFileSync('./db.json', JSON.stringify(passwords));
-  } catch (erroe) {
+    fs.writeFileSync('./db.json', JSON.stringify(passwords, null, 2));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function unset() {
+  try {
+    const passwordsJSON = fs.readFileSync('./db.json', 'utf8');
+    const passwords = JSON.parse(passwordsJSON);
+    delete passwords[key];
+    fs.writeFileSync('./db.json', JSON.stringify(passwords, null, 2));
+  } catch (error) {
     console.error(error);
   }
 }
@@ -26,6 +37,6 @@ if (command === 'get') {
   get();
 } else if (command === 'set') {
   set();
-} else {
-  console.log('Unknown command');
+} else if (command === 'unset') {
+  unset();
 }
