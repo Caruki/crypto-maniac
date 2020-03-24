@@ -4,8 +4,8 @@ const { askForPassword, askForMasterPassword } = require('./lib/questions');
 const { readMasterPassword } = require('./lib/dbaccess');
 
 async function run() {
-  const input = await askForMasterPassword();
-  if (input === readMasterPassword()) {
+  const inputMasterPassword = await askForMasterPassword();
+  if (inputMasterPassword === readMasterPassword()) {
     if (command === 'get') {
       get(key);
     } else if (command === 'set') {
@@ -16,6 +16,9 @@ async function run() {
     } else {
       console.log('Unknown command');
     }
+  } else {
+    console.log('Fuck Off!');
+    return;
   }
 }
 
