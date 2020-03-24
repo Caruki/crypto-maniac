@@ -1,7 +1,7 @@
 const { get, set, unset } = require('./lib/commands');
 const [command, key] = process.argv.slice(2);
 const { askForPassword, askForMasterPassword } = require('./lib/questions');
-const { readMasterPassword } = require('./lib/passwords');
+const { readMasterPassword } = require('./lib/dbaccess');
 
 async function run() {
   const input = await askForMasterPassword();
