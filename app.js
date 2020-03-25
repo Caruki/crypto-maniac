@@ -6,16 +6,14 @@ const { readMasterPassword } = require('./lib/dbaccess');
 
 async function run() {
   const inputMasterPassword = await askForMasterPassword();
-
+  if (command === 'reset') {
+    return reset(inputMasterPassword);
+  }
   const masterPassword = readMasterPassword();
 
   if (!verifyHash(inputMasterPassword, masterPassword)) {
     console.log('Fuck Off!');
     return;
-  }
-
-  if (command === 'reset') {
-    return reset(inputMasterPassword);
   }
 
   if (command === 'get') {
