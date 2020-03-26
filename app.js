@@ -12,7 +12,7 @@ async function run() {
     const inputMasterPassword = await askForMasterPassword();
 
     if (command === 'reset') {
-      return reset(inputMasterPassword);
+      reset(inputMasterPassword);
     }
 
     if (!verifyHash(inputMasterPassword, masterPassword)) {
