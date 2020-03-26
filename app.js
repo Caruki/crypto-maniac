@@ -8,11 +8,12 @@ const { connect, close } = require('./lib/mongo');
 async function run() {
   try {
     await connect();
-    const masterPassword = await getMasterPassword();
     const inputMasterPassword = await askForMasterPassword();
+    const masterPassword = await getMasterPassword();
 
     if (command === 'reset') {
-      reset(inputMasterPassword);
+      await reset(inputMasterPassword);
+      return;
     }
 
     if (!verifyHash(inputMasterPassword, masterPassword)) {
@@ -21,12 +22,12 @@ async function run() {
     }
 
     if (command === 'get') {
-      get(key, masterPassword);
+      await get(key, masterPassword);
     } else if (command === 'set') {
       const password = await askForPassword(key);
-      set(key, password, masterPassword);
+      await set(key, password, masterPassword);
     } else if (command === 'unset') {
-      unset(key);
+      await unset(key);
     } else {
       console.error('Unknown command');
     }
